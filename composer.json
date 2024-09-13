@@ -1,0 +1,20 @@
+{
+    "name": "amkas/converter",
+    "autoload": {
+        "psr-4": {
+            "Amkas\\CurrencyConverter\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Ch Kashif Sohail",
+            "email": "amkashif171@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    }
+}
