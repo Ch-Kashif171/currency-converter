@@ -1,5 +1,5 @@
 {
-    "name": "amkas/converter",
+    "name": "amkas/currency-converter",
     "autoload": {
         "psr-4": {
             "Amkas\\CurrencyConverter\\": "src/"
