@@ -61,7 +61,7 @@ After that, you can create a CRUD to save the currency rates into database
     $convertedAmount = convertRate(10, 'EUR');
   ```
 
-####Note: Since this currency converter has cache implemented to avoid database query everytime when currency conversion function will call, so every time when new currency rate will add via CurrencyRate model, the cahce will automatically reset.
+###Note: Since this currency converter has cache implemented to avoid database query everytime when currency conversion function will call, so every time when new currency rate will add via CurrencyRate model, the cahce will automatically reset.
 However you can reset that specific cache by runing the below command:
 
 ````php
