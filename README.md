@@ -24,9 +24,9 @@ To publish the assets run the below command.
 This command will copy three files as below:
 
  ```php
-File [app\Models\CurrencyRate.php] already exists ............................................................... SKIPPED
-File [config\currency_converter.php] already exists ............................................................. SKIPPED
-Copying directory [vendor\amkas\currency-converter\src\database\migrations] to [C:\laragon\www\converter\database\migrations]  DONE
+ Copying file [amkas\currency-converter\src\Models\CurrencyRate.php] to [app\Models\CurrencyRate.php]  DONE
+ Copying file [amkas\currency-converter\src\config\currency_converter.php] to [config\currency_converter.php]  DONE
+ Copying directory [amkas\currency-converter\src\database\migrations] to [database\migrations]  DONE
   ```
 So there are three files
 1. Currency rates migration
