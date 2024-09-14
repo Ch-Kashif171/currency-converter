@@ -45,9 +45,9 @@ Then you can set the default currency in config file as below:
 'default_currency' => 'USD',
 ```
 
-and other settings.
+and other config settings.
 
-This will migrate the currency rates table, then you can create a CRUD to save the currency rates into database
+After that, you can create a CRUD to save the currency rates into database
 
 # Usage:
   In Controller include and call Currency class and pass the amount and desire currency notation in convert method as below:
@@ -60,3 +60,10 @@ This will migrate the currency rates table, then you can create a CRUD to save t
   ```php
     $convertedAmount = convertRate(10, 'EUR');
   ```
+
+####Note: Since this currency converter has cache implemented to avoid database query everytime when currency conversion function will call, so every time when new currency rate will add via CurrencyRate model, the cahce will automatically reset.
+However you can reset that specific cache by runing the below command:
+
+````php
+php artisan converter:reset-cache
+````
