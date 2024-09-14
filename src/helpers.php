@@ -1,6 +1,6 @@
 <?php
 
-use Amkas\Ch\Conversion\ConvertRate;
+use Amkas\CurrencyConverter\Conversion\ConvertRate;
 
 if (!function_exists('convertRate')) {
 
