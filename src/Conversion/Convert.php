@@ -4,14 +4,49 @@ namespace Amkas\CurrencyConverter\Conversion;
 
 use App\Models\CurrencyRate;
 
-trait Convert
+class Convert implements ConvertInterface
 {
+    /**
+     * @var \Illuminate\Container\Container|mixed|object|string
+     */
+    protected mixed $default_rate;
+    /**
+     * @var \Illuminate\Container\Container|mixed|object|string
+     */
+    protected mixed $conversion_rate;
+    /**
+     * @var \Illuminate\Container\Container|mixed|object|string
+     */
+    protected mixed $default_currency;
+
+    /**
+     * @var \Illuminate\Container\Container|mixed|object|string
+     */
+    protected mixed $cache_prefix = '';
+
+    /**
+     * @var \Illuminate\Container\Container|mixed|object|string
+     */
+    public mixed $amount_decimal_places = '';
+
+    /**
+     * @param string $default_currency
+     */
+    public function __construct()
+    {
+        $this->cache_prefix = 'convert_rate_';
+        $this->default_rate = config('currency_converter.default_rate') ?? '1.000';
+        $this->conversion_rate = config('currency_converter.conversion_rate') ?? '1.000';
+        $this->default_currency = config('currency_converter.default_currency') ?? '1.000';
+        $this->amount_decimal_places = config('currency_converter.amount_decimal_places') ?? '3';
+    }
+
     /**
      * @param $amount
      * @param $rate
      * @return float|int
      */
-    protected static function getRate($amount, $rate)
+    public static function getRate($amount, $rate)
     {
         return ($amount / $rate);
     }
@@ -20,7 +55,7 @@ trait Convert
      * @param $currency
      * @return \Illuminate\Container\Container|mixed|object|string
      */
-    protected static function getCurrency($currency)
+    public static function getCurrency($currency)
     {
         return ($currency != '' ? $currency : (new self())->default_currency);
     }
@@ -28,7 +63,7 @@ trait Convert
     /**
      * @return int|mixed
      */
-    protected static function getDefaultRate()
+    public static function getDefaultRate()
     {
         $defaultRate = CurrencyRate::query()->where('currency', (new self())->default_currency)->value('rate');
         if ($defaultRate) {

@@ -6,44 +6,8 @@ use App\Models\CurrencyRate;
 
 use Illuminate\Support\Facades\Cache;
 
-class ConvertRate
+class ConvertRate extends Convert
 {
-    use Convert;
-
-    /**
-     * @var \Illuminate\Container\Container|mixed|object|string
-     */
-    private mixed $default_rate;
-    /**
-     * @var \Illuminate\Container\Container|mixed|object|string
-     */
-    private mixed $conversion_rate;
-    /**
-     * @var \Illuminate\Container\Container|mixed|object|string
-     */
-    private mixed $default_currency;
-
-    /**
-     * @var \Illuminate\Container\Container|mixed|object|string
-     */
-    public mixed $cache_prefix = '';
-
-    /**
-     * @var \Illuminate\Container\Container|mixed|object|string
-     */
-    public mixed $amount_decimal_places = '';
-
-    /**
-     * @param string $default_currency
-     */
-    public function __construct()
-    {
-        $this->cache_prefix = 'convert_rate_';
-        $this->default_rate = config('currency_converter.default_rate') ?? '1.000';
-        $this->conversion_rate = config('currency_converter.conversion_rate') ?? '1.000';
-        $this->default_currency = config('currency_converter.default_currency') ?? '1.000';
-        $this->amount_decimal_places = config('currency_converter.amount_decimal_places') ?? '3';
-    }
 
     /**
      * @param string $amount
