@@ -1,5 +1,7 @@
 {
     "name": "amkas/currency-converter",
+    "description": "Currency Converter is a simple easy to use package for Laravel for currency conversion.",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Amkas\\CurrencyConverter\\": "src/"
