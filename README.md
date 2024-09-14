@@ -28,6 +28,26 @@ File [app\Models\CurrencyRate.php] already exists ..............................
 File [config\currency_converter.php] already exists ............................................................. SKIPPED
 Copying directory [vendor\amkas\currency-converter\src\database\migrations] to [C:\laragon\www\converter\database\migrations]  DONE
   ```
+So there are three files
+1. Currency rates migration
+2. Currency Rate model
+3. config/currency-converter.php
+
+After that, you need to run the migration command to migrate the currency rates table into database as below:
+
+```
+ php artisan migrate
+```
+
+Then you can set the default currency in config file as below:
+
+```
+'default_currency' => 'USD',
+```
+
+and other settings.
+
+This will migrate the currency rates table, then you can create a CRUD to save the currency rates into database
 
 # Usage:
   In Controller include and call Currency class and pass the amount and desire currency notation in convert method as below:
