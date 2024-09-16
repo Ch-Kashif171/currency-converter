@@ -6,11 +6,11 @@ Currency Converter is a simple easy to use package for Laravel for currency conv
   Install Currency Converter via composer.
 Note: If you do not have composer yet, you can install it by following the instructions on https://getcomposer.org
 
-# Step 1. Install package
+## Step 1. Install package
   
     composer require amkas/currency-converter
 
-# Step 2. Register the Currency Converter service provider
+## Step 2. Register the Currency Converter service provider
   in bootstrap/providers.php
   add following line
    ```php
