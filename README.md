@@ -50,17 +50,33 @@ and other config settings.
 After that, you can create a CRUD to save the currency rates into database
 
 # Usage:
-  In Controller include and call Currency class and pass the amount and desire currency notation in convert method as below:
+  In Controller include and call Currency class and pass the amount and desire currency notation in convertAmount method as below:
   ```php
     use Amkas\CurrencyConverter\Currency;
     
-    $convertedAmount = Currency::convert(10, 'EUR');
+    $convertedAmount = Currency::convertAmount(10, 'EUR');
   ```
   If you want to use a helper's function use below.
   ```php
     $convertedAmount = convertRate(10, 'EUR');
   ```
 
+If you want to convert amount from one currency to another, call chain functions as below:
+
+```php
+    $convertedAmount = Currency::amount(10)
+        ->from('EUR')
+        ->to("USD")
+        ->convert();
+  ```
+with helper functions you can call as below:
+
+```php
+    $convertedAmount = amount(10)
+        ->from("EUR")
+        ->to("USD")
+        ->convert();
+  ```
 #### Note: Since this currency converter has cache implemented to avoid database query everytime when currency conversion function will call, so every time when new currency rate will add via CurrencyRate model, the cahce will automatically reset.
 However you can reset that specific cache by runing the below command:
 

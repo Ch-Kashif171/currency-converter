@@ -2,6 +2,8 @@
 
 namespace Amkas\CurrencyConverter\Conversion;
 
+use Amkas\CurrencyConverter\Conversion\Interfaces\ConvertInterface;
+use Amkas\CurrencyConverter\Exceptions\ConversionException;
 use App\Models\CurrencyRate;
 
 class Convert implements ConvertInterface
@@ -71,6 +73,69 @@ class Convert implements ConvertInterface
         }
 
         return (new self())->default_rate;
+    }
+
+    /**
+     * @param $from
+     * @return \Illuminate\Container\Container|mixed|object|string
+     */
+    public static function getCurrencyRate($from)
+    {
+        $defaultRate = CurrencyRate::query()->where('currency', $from)->value('rate');
+        if ($defaultRate) {
+            return $defaultRate;
+        }
+
+        return (new self())->default_rate;
+    }
+
+    /**
+     * @param $amount
+     * @param $currency
+     * @param $defaultRate
+     * @return string
+     */
+    public static function rateQuery($amount, $currency, $defaultRate)
+    {
+        try {
+            $decimal_places = (new self())->amount_decimal_places;
+
+            $currencyQuery = CurrencyRate::query()->where('currency', $currency);
+            if ($currencyQuery->exists()) {
+                $currencyRate = CurrencyRate::query()->select('currency', 'rate')->where('currency', $currency)->first();
+
+                if ($currencyRate) {
+                    return number_format((self::getRate($amount, $defaultRate) * $currencyRate->rate), $decimal_places);
+                }
+            }
+
+            return number_format((self::getRate($amount, (new self())->default_rate) * (new self())->conversion_rate), $decimal_places);
+        } catch (\Exception $e) {
+            throw new ConversionException($e->getMessage());
+        }
+    }
+
+    /**
+     * @param $amount
+     * @param $fromRate
+     * @param $toRate
+     * @param $defaultRate
+     * @return mixed|string
+     * @throws ConversionException
+     */
+    public static function calculateRate($amount, $fromRate, $toRate, $defaultRate)
+    {
+        try {
+            if ($amount <= 0) {
+                throw new ConversionException("The given amount must be greater than 0");
+            }
+            $decimal_places = (new self())->amount_decimal_places;
+            $rate = ($defaultRate / $fromRate) * $toRate;
+            return number_format($rate * $amount, $decimal_places);
+        } catch (\Exception $e) {
+            throw new ConversionException($e->getMessage());
+        }
+
     }
 
     /**
