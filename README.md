@@ -16,7 +16,7 @@ Note: If you do not have composer yet, you can install it by following the instr
    ```php
     \Amkas\CurrencyConverter\ConversionServiceProvider::class,
    ```
-#### Publish Assets
+## Step 3. Publish Assets
 To publish the assets run the below command.
 ```
  php artisan vendor:publish --tag=amkas-currency-converter
