@@ -51,10 +51,11 @@ After that, you can create a CRUD to save the currency rates into database
 
 # Usage:
   In Controller include and call Currency class and pass the amount and desire currency notation in convertAmount method as below:
+
   ```php
-    use Amkas\CurrencyConverter\Currency;
+    use Amkas\CurrencyConverter\CurrencyConverter;
     
-    $convertedAmount = Currency::convertAmount(10, 'EUR');
+    $convertedAmount = CurrencyConverter::convertAmount(10, 'EUR');
   ```
   If you want to use a helper's function use below.
   ```php

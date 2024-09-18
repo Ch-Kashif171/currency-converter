@@ -3,6 +3,7 @@
 namespace Amkas\CurrencyConverter;
 
 use Amkas\CurrencyConverter\Console\Commands\ResetConversionRateCache;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class ConversionServiceProvider extends ServiceProvider
@@ -17,6 +18,12 @@ class ConversionServiceProvider extends ServiceProvider
 
     public function register()
     {
+        //Register currency facade
+        App::bind('currency',function() {
+            return new CurrencyConverter;
+        });
+
+        //Register commands
         $this->commands([
             ResetConversionRateCache::class,
         ]);

@@ -4,9 +4,13 @@ namespace Amkas\CurrencyConverter;
 
 use Amkas\CurrencyConverter\Conversion\ConvertRate;
 
-class Currency
+class CurrencyConverter
 {
-
+    /**
+     * @param $amount
+     * @param $from
+     * @param $to
+     */
     public function __construct(private $amount = 0, private $from = '', private $to = ''){}
 
     /**
@@ -21,11 +25,11 @@ class Currency
 
     /**
      * @param $amount
-     * @return Currency
+     * @return CurrencyConverter
      */
     public static function amount($amount)
     {
-        return new Currency($amount);
+        return new CurrencyConverter($amount);
     }
 
     /**
