@@ -1,6 +1,8 @@
 <?php
 
-namespace Amkas\CurrencyConverter\Conversion;
+namespace Amkas\CurrencyConverter\Conversion\Traits;
+
+use Amkas\CurrencyConverter\Conversion\ResetCache;
 
 trait ResetConversionCache
 {

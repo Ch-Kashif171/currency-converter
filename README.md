@@ -6,17 +6,17 @@ Currency Converter is a simple easy to use package for Laravel for currency conv
   Install Currency Converter via composer.
 Note: If you do not have composer yet, you can install it by following the instructions on https://getcomposer.org
 
-# Step 1. Install package
+## Step 1. Install package
   
     composer require amkas/currency-converter
 
-# Step 2. Register the Currency Converter service provider
+## Step 2. Register the Currency Converter service provider
   in bootstrap/providers.php
   add following line
    ```php
     \Amkas\CurrencyConverter\ConversionServiceProvider::class,
    ```
-#### Publish Assets
+## Step 3. Publish Assets
 To publish the assets run the below command.
 ```
  php artisan vendor:publish --tag=amkas-currency-converter
@@ -50,17 +50,34 @@ and other config settings.
 After that, you can create a CRUD to save the currency rates into database
 
 # Usage:
-  In Controller include and call Currency class and pass the amount and desire currency notation in convert method as below:
+  In Controller include and call Currency class and pass the amount and desire currency notation in convertAmount method as below:
+
   ```php
-    use Amkas\CurrencyConverter\Currency;
+    use Amkas\CurrencyConverter\CurrencyConverter;
     
-    $convertedAmount = Currency::convert(10, 'EUR');
+    $convertedAmount = CurrencyConverter::convertAmount(10, 'EUR');
   ```
   If you want to use a helper's function use below.
   ```php
     $convertedAmount = convertRate(10, 'EUR');
   ```
 
+If you want to convert amount from one currency to another, call chain functions as below:
+
+```php
+    $convertedAmount = Currency::amount(10)
+        ->from('EUR')
+        ->to("USD")
+        ->convert();
+  ```
+with helper functions you can call as below:
+
+```php
+    $convertedAmount = amount(10)
+        ->from("EUR")
+        ->to("USD")
+        ->convert();
+  ```
 #### Note: Since this currency converter has cache implemented to avoid database query everytime when currency conversion function will call, so every time when new currency rate will add via CurrencyRate model, the cahce will automatically reset.
 However you can reset that specific cache by runing the below command:
 
