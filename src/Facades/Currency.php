@@ -2,11 +2,12 @@
 
 namespace Amkas\CurrencyConverter\Facades;
 
+use Amkas\CurrencyConverter\CurrencyConverter;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static integer|string convertAmount(integer|string $amount, string $currency)
- * @method static \Amkas\CurrencyConverter\CurrencyConverter amount(integer|string $amount)
+ * @method static CurrencyConverter amount(integer|string $amount)
  */
 
 class Currency extends Facade
