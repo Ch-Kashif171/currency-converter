@@ -93,7 +93,8 @@ class Convert implements ConvertInterface
      * @param $amount
      * @param $currency
      * @param $defaultRate
-     * @return string
+     * @return mixed|string
+     * @throws ConversionException
      */
     public static function rateQuery($amount, $currency, $defaultRate)
     {
