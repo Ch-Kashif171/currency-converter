@@ -59,7 +59,7 @@ After that, you can create a CRUD to save the currency rates into database
   ```
   If you want to use a helper's function use below.
   ```php
-    $convertedAmount = convertRate(10, 'EUR');
+    $convertedAmount = convertAmount(10, 'EUR');
   ```
 
 If you want to convert amount from one currency to another using Currency Facade, call chain functions as below:
