@@ -27,7 +27,7 @@
         },
         "laravel": {
             "providers": [
-                "Amkas\\CurrencyConverter\\PulseServiceProvider"
+                "Amkas\\CurrencyConverter\\ConversionServiceProvider"
             ]
         }
     },
