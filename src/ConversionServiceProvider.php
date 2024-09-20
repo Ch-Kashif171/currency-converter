@@ -35,7 +35,7 @@ class ConversionServiceProvider extends ServiceProvider
 
             $this->publishes([
                 __DIR__ . '/Models/CurrencyRate.php' => base_path('App/Models/CurrencyRate.php'),
-                __DIR__ . 'currency-converter.php' => base_path('currency-converter.php'),
+                __DIR__ . '/config/currency-converter.php' => base_path('config/currency-converter.php'),
                 __DIR__ . '/database/migrations' => database_path('migrations'),
             ], 'amkas-currency-converter');
         }
