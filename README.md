@@ -10,9 +10,9 @@ Note: If you do not have composer yet, you can install it by following the instr
   
     composer require amkas/currency-converter
 
-## Step 2. Register the Currency Converter service provider
+## Step 2. Register the Currency Converter service provider (Optional)
   in bootstrap/providers.php
-  add following line
+  you can add following line
    ```php
     \Amkas\CurrencyConverter\ConversionServiceProvider::class,
    ```
@@ -20,6 +20,10 @@ Note: If you do not have composer yet, you can install it by following the instr
 To publish the assets run the below command.
 ```
  php artisan vendor:publish --tag=amkas-currency-converter
+```
+Or 
+```php
+php artisan vendor:publish --provider="Amkas\CurrencyConverter\ConversionServiceProvider"
 ```
 This command will copy three files as below:
 
