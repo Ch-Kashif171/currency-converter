@@ -1,15 +1,9 @@
 {
     "name": "amkas/currency-converter",
     "description": "Currency Converter is a simple easy to use package for Laravel for currency conversion.",
+    "keywords": ["laravel"],
+    "homepage": "https://github.com/Ch-Kashif171/currency-converter",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Amkas\\CurrencyConverter\\": "src/"
-        },
-        "files": [
-            "src/helpers.php"
-        ]
-    },
     "authors": [
         {
             "name": "Ch Kashif Sohail",
@@ -18,5 +12,25 @@
     ],
     "require": {
         "php": "^8.2"
-    }
+    },
+    "autoload": {
+        "psr-4": {
+            "Amkas\\CurrencyConverter\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Amkas\\CurrencyConverter\\PulseServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
