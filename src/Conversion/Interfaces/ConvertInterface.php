@@ -11,46 +11,46 @@ interface ConvertInterface
      * @param $rate
      * @return float|int
      */
-    public static function getRate($amount, $rate);
+    public static function getRate($amount, $rate): float|int;
 
     /**
      * @param $currency
-     * @return \Illuminate\Container\Container|mixed|object|string
+     * @return mixed
      */
-    public static function getCurrency($currency);
+    public static function getCurrency($currency): mixed;
 
     /**
      * @param $from
      * @return mixed
      */
-    public static function getCurrencyRate($from);
+    public static function getCurrencyRate($from): mixed;
 
     /**
-     * @param $amount
-     * @param $currency
-     * @param $defaultRate
-     * @return mixed
+     * @param float $amount
+     * @param string $currency
+     * @param float $defaultRate
+     * @return string
      */
-    public static function rateQuery($amount, $currency, $defaultRate);
+    public static function rateQuery(float $amount, string $currency, float $defaultRate): string;
 
     /**
-     * @param $amount
-     * @param $fromRate
-     * @param $toRate
-     * @param $defaultRate
-     * @return mixed|string
+     * @param float $amount
+     * @param float $fromRate
+     * @param float $toRate
+     * @param float $defaultRate
+     * @return mixed
      * @throws ConversionException
      */
-    public static function calculateRate($amount, $fromRate, $toRate, $defaultRate);
+    public static function calculateRate(float $amount, float $fromRate, float $toRate, float $defaultRate): mixed;
 
     /**
-     * @return int|mixed
+     * @return mixed
      */
-    public static function getDefaultRate();
+    public static function getDefaultRate(): mixed;
 
     /**
      * @param string $currency
      * @return string
      */
-    public static function cacheName(string $currency);
+    public static function cacheName(string $currency): string;
 }

@@ -5,35 +5,33 @@ namespace Amkas\CurrencyConverter\Conversion;
 use Amkas\CurrencyConverter\Conversion\Interfaces\ConvertInterface;
 use Amkas\CurrencyConverter\Exceptions\ConversionException;
 use App\Models\CurrencyRate;
+use Illuminate\Container\Container;
 
 class Convert implements ConvertInterface
 {
     /**
-     * @var \Illuminate\Container\Container|mixed|object|string
+     * @var Container|mixed|object|string
      */
     protected mixed $default_rate;
     /**
-     * @var \Illuminate\Container\Container|mixed|object|string
+     * @var Container|mixed|object|string
      */
     protected mixed $conversion_rate;
     /**
-     * @var \Illuminate\Container\Container|mixed|object|string
+     * @var Container|mixed|object|string
      */
     protected mixed $default_currency;
 
     /**
-     * @var \Illuminate\Container\Container|mixed|object|string
+     * @var Container|mixed|object|string
      */
     protected mixed $cache_prefix = '';
 
     /**
-     * @var \Illuminate\Container\Container|mixed|object|string
+     * @var Container|mixed|object|string
      */
     public mixed $amount_decimal_places = '';
 
-    /**
-     * @param string $default_currency
-     */
     public function __construct()
     {
         $this->cache_prefix = 'convert_rate_';
@@ -48,24 +46,24 @@ class Convert implements ConvertInterface
      * @param $rate
      * @return float|int
      */
-    public static function getRate($amount, $rate)
+    public static function getRate($amount, $rate): float|int
     {
         return ($amount / $rate);
     }
 
     /**
      * @param $currency
-     * @return \Illuminate\Container\Container|mixed|object|string
+     * @return mixed
      */
-    public static function getCurrency($currency)
+    public static function getCurrency($currency): mixed
     {
         return ($currency != '' ? $currency : (new self())->default_currency);
     }
 
     /**
-     * @return int|mixed
+     * @return mixed
      */
-    public static function getDefaultRate()
+    public static function getDefaultRate(): mixed
     {
         $defaultRate = CurrencyRate::query()->where('currency', (new self())->default_currency)->value('rate');
         if ($defaultRate) {
@@ -77,9 +75,9 @@ class Convert implements ConvertInterface
 
     /**
      * @param $from
-     * @return \Illuminate\Container\Container|mixed|object|string
+     * @return mixed
      */
-    public static function getCurrencyRate($from)
+    public static function getCurrencyRate($from): mixed
     {
         $defaultRate = CurrencyRate::query()->where('currency', $from)->value('rate');
         if ($defaultRate) {
@@ -90,13 +88,13 @@ class Convert implements ConvertInterface
     }
 
     /**
-     * @param $amount
-     * @param $currency
-     * @param $defaultRate
-     * @return mixed|string
+     * @param float $amount
+     * @param string $currency
+     * @param float $defaultRate
+     * @return string
      * @throws ConversionException
      */
-    public static function rateQuery($amount, $currency, $defaultRate)
+    public static function rateQuery(float $amount, string $currency, float $defaultRate): string
     {
         try {
             $decimal_places = (new self())->amount_decimal_places;
@@ -117,14 +115,14 @@ class Convert implements ConvertInterface
     }
 
     /**
-     * @param $amount
-     * @param $fromRate
-     * @param $toRate
-     * @param $defaultRate
-     * @return mixed|string
+     * @param float$amount
+     * @param float $fromRate
+     * @param float $toRate
+     * @param float $defaultRate
+     * @return mixed
      * @throws ConversionException
      */
-    public static function calculateRate($amount, $fromRate, $toRate, $defaultRate)
+    public static function calculateRate(float $amount, float $fromRate, float $toRate, float $defaultRate): mixed
     {
         try {
             if ($amount <= 0) {
