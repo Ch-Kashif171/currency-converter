@@ -2,38 +2,43 @@
 
 namespace Amkas\CurrencyConverter\Conversion;
 
+use Amkas\CurrencyConverter\Exceptions\ConversionException;
 use Illuminate\Support\Facades\Cache;
 
 class ConvertRate extends Convert
 {
 
     /**
-     * @param string $amount
+     * @param float $amount
      * @param string $currency
      * @return string
      */
-    public static function convertAmount(string $amount, string $currency = ''): string
+    public static function convertAmount(float $amount, string $currency = ''): string
     {
-        return Cache::rememberForever(self::cacheName($currency), function () use ($amount, $currency) {
+        return Cache::rememberForever(self::cacheName($currency), static function () use ($amount, $currency) {
             return self::convertRate($amount, $currency);
         });
     }
 
     /**
-     * @throws \Amkas\CurrencyConverter\Exceptions\ConversionException
+     * @param float $amount
+     * @param string $from
+     * @param string $to
+     * @return string
+     * @throws ConversionException
      */
-    public static function convert(string $amount, string $from, $to): string
+    public static function convert(float $amount, string $from, string$to): string
     {
         return self::convertFrom($amount, $from, $to);
     }
 
     /**
-     * @param string $amount
+     * @param float $amount
      * @param string $currency
      * @return string
-     * @throws \Amkas\CurrencyConverter\Exceptions\ConversionException
+     * @throws ConversionException
      */
-    protected static function convertRate(string $amount, string $currency)
+    protected static function convertRate(float $amount, string $currency): string
     {
         $defaultRate = self::getDefaultRate();
         $currency = self::getCurrency($currency);
@@ -41,13 +46,13 @@ class ConvertRate extends Convert
     }
 
     /**
-     * @param $amount
-     * @param $from
-     * @param $to
+     * @param float $amount
+     * @param string $from
+     * @param string $to
      * @return string
-     * @throws \Amkas\CurrencyConverter\Exceptions\ConversionException
+     * @throws ConversionException
      */
-    protected static function convertFrom($amount, $from, $to)
+    protected static function convertFrom(float $amount, string $from, string $to): string
     {
         $defaultRate = self::getDefaultRate();
         $fromRate = self::getCurrencyRate($from);
