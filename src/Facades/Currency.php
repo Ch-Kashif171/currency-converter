@@ -6,8 +6,8 @@ use Amkas\CurrencyConverter\CurrencyConverter;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static integer|string convertAmount(integer|string $amount, string $currency)
- * @method static CurrencyConverter amount(integer|string $amount)
+ * @method static float convertAmount(float $amount, string $currency)
+ * @method static CurrencyConverter amount(float $amount)
  */
 
 class Currency extends Facade

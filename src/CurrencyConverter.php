@@ -3,31 +3,32 @@
 namespace Amkas\CurrencyConverter;
 
 use Amkas\CurrencyConverter\Conversion\ConvertRate;
+use JetBrains\PhpStorm\Pure;
 
 class CurrencyConverter
 {
     /**
-     * @param $amount
-     * @param $from
-     * @param $to
+     * @param float $amount
+     * @param string $from
+     * @param string $to
      */
-    public function __construct(private $amount = 0, private $from = '', private $to = ''){}
+    public function __construct(private float $amount = 0.00, private string $from = '', private string $to = ''){}
 
     /**
-     * @param $amount
-     * @param $currency
+     * @param float $amount
+     * @param string $currency
      * @return string
      */
-    public static function convertAmount($amount, $currency = '')
+    public static function convertAmount(float $amount, string $currency = ''): string
     {
         return ConvertRate::convertAmount($amount, $currency);
     }
 
     /**
-     * @param $amount
+     * @param float $amount
      * @return CurrencyConverter
      */
-    public static function amount($amount)
+    #[Pure] public static function amount(float $amount): CurrencyConverter
     {
         return new CurrencyConverter($amount);
     }
@@ -36,7 +37,7 @@ class CurrencyConverter
      * @param $from
      * @return $this
      */
-    public function from($from)
+    public function from($from): static
     {
         $this->from = $from;
         return $this;
@@ -46,7 +47,7 @@ class CurrencyConverter
      * @param $to
      * @return $this
      */
-    public function to($to)
+    public function to($to): static
     {
         $this->to = $to;
         return $this;
@@ -56,7 +57,7 @@ class CurrencyConverter
      * @return string
      * @throws Exceptions\ConversionException
      */
-    public function convert()
+    public function convert(): string
     {
         return ConvertRate::convert($this->amount, $this->from, $this->to);
     }
