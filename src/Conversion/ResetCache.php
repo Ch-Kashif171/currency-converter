@@ -2,7 +2,7 @@
 
 namespace Amkas\CurrencyConverter\Conversion;
 
-use App\Models\CurrencyRate;
+use Amkas\CurrencyConverter\Models\CurrencyRate;
 use Illuminate\Support\Facades\Cache;
 
 class ResetCache

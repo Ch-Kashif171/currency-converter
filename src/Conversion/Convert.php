@@ -4,7 +4,7 @@ namespace Amkas\CurrencyConverter\Conversion;
 
 use Amkas\CurrencyConverter\Conversion\Interfaces\ConvertInterface;
 use Amkas\CurrencyConverter\Exceptions\ConversionException;
-use App\Models\CurrencyRate;
+use Amkas\CurrencyConverter\Models\CurrencyRate;
 use Illuminate\Container\Container;
 
 class Convert implements ConvertInterface

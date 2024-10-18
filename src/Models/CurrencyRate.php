@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Amkas\CurrencyConverter\Models;
 
 use Amkas\CurrencyConverter\Conversion\Traits\ResetConversionCache;
 use Illuminate\Database\Eloquent\Model;
