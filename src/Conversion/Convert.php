@@ -35,10 +35,10 @@ class Convert implements ConvertInterface
     public function __construct()
     {
         $this->cache_prefix = 'convert_rate_';
-        $this->default_rate = config('currency_converter.default_rate') ?? '1.000';
-        $this->conversion_rate = config('currency_converter.conversion_rate') ?? '1.000';
-        $this->default_currency = config('currency_converter.default_currency') ?? 'USD';
-        $this->amount_decimal_places = config('currency_converter.amount_decimal_places') ?? '3';
+        $this->default_rate = config('currency-converter.default_rate') ?? '1.000';
+        $this->conversion_rate = config('currency-converter.conversion_rate') ?? '1.000';
+        $this->default_currency = config('currency-converter.default_currency') ?? 'USD';
+        $this->amount_decimal_places = config('currency-converter.amount_decimal_places') ?? '3';
     }
 
     /**
